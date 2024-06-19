@@ -18,7 +18,7 @@ namespace Finshark.Models
 
         public long MarketCap { get; set; }
 
-        public List<Comment> Commentss { get; set; } = new List<Comment>();
+        public List<Comment> Comments { get; set; } = new List<Comment>();
 
 
     }

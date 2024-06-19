@@ -14,6 +14,7 @@ namespace Finshark
             builder.Services.AddAuthorization();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<ApplicationDBContext>(options => {
@@ -30,6 +31,8 @@ namespace Finshark
             }
 
             app.UseHttpsRedirection();
+
+            app.MapControllers();
 
             app.UseAuthorization();
 
