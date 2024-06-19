@@ -1,4 +1,5 @@
 ﻿using Finshark.Data;
+using Finshark.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Finshark.Controllers
@@ -17,7 +18,8 @@ namespace Finshark.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-          var stocks = _context.Stocks.ToList();
+          var stocks = _context.Stocks.ToList()
+                .Select(s => s.ToStockDto());
             return Ok(stocks);
         }
 
@@ -29,7 +31,7 @@ namespace Finshark.Controllers
             {
                 return NotFound();            
             }
-            return Ok(stock);
+            return Ok(stock.ToStockDto());
         }
     }
 }
