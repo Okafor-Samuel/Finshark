@@ -1,5 +1,6 @@
 ﻿using Finshark.Data;
 using Finshark.Dtos.stock;
+using Finshark.Helpers;
 using Finshark.Interfaces;
 using Finshark.Models;
 using Microsoft.EntityFrameworkCore;
@@ -33,9 +34,19 @@ namespace Finshark.Repository
             return stockModel;
         }
 
-        public async Task<List<Stock>> GetAllAsync()
+        public async Task<List<Stock>> GetAllAsync(QueryObject query)
         {
-            return  await _context.Stocks.Include(c => c.Comments).ToListAsync();
+            var stock = _context.Stocks.Include(c => c.Comments).AsQueryable();
+            if (!string.IsNullOrWhiteSpace(query.CompanyName)) 
+            {
+                stock = stock.Where(s => s.CompanyName.Contains(query.CompanyName));
+            }
+
+            if(!string.IsNullOrWhiteSpace(query.Symbol))
+            {
+                stock = stock.Where(s => s.Symbol.Contains(query.Symbol));
+            }
+            return await stock.ToListAsync();
         }
 
         public async Task<Stock?> GetByIdAsync(int id)
