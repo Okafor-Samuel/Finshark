@@ -46,6 +46,13 @@ namespace Finshark.Repository
             {
                 stock = stock.Where(s => s.Symbol.Contains(query.Symbol));
             }
+            if (!string.IsNullOrWhiteSpace(query.SortBy)) 
+            {
+                if (query.SortBy.Equals("Symbol", StringComparison.OrdinalIgnoreCase)) 
+                {
+                    stock = query.IsDescending ? stock.OrderByDescending(s => s.Symbol) : stock.OrderBy(s => s.Symbol);
+                }
+            }
             return await stock.ToListAsync();
         }
 
