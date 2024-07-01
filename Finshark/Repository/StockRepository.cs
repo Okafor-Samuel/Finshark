@@ -83,5 +83,6 @@ namespace Finshark.Repository
             await _context.SaveChangesAsync();
             return existingStock;
         }
+
     }
 } 
