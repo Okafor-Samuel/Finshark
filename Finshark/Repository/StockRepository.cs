@@ -53,7 +53,9 @@ namespace Finshark.Repository
                     stock = query.IsDescending ? stock.OrderByDescending(s => s.Symbol) : stock.OrderBy(s => s.Symbol);
                 }
             }
-            return await stock.ToListAsync();
+            var skipNumber = (query.PageNumber -1)* query.PageSize;
+
+            return await stock.Skip(skipNumber).Take(query.PageNumber).ToListAsync();
         }
 
         public async Task<Stock?> GetByIdAsync(int id)
