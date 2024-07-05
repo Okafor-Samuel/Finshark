@@ -14,6 +14,7 @@ namespace Finshark.Controllers
         {
             _userManager = userManager;
         }
+        
 
         [HttpPost("register")]
         private async Task<IActionResult> Register([FromBody]  RegisterDto register)  
