@@ -17,7 +17,7 @@ namespace Finshark.Controllers
         
 
         [HttpPost("register")]
-        private async Task<IActionResult> Register([FromBody]  RegisterDto register)  
+        public async Task<IActionResult> Register([FromBody]  RegisterDto registerDto)  
         {
             try {
                 if(!ModelState.IsValid)
@@ -25,11 +25,11 @@ namespace Finshark.Controllers
 
                 var appUser = new AppUser
                 {
-                    UserName = register.Username,
-                    Email = register.Email
+                    UserName = registerDto.Username,
+                    Email = registerDto.Email
                 };
 
-                var createdUser = await _userManager.CreateAsync(appUser, register.Password);
+                var createdUser = await _userManager.CreateAsync(appUser, registerDto.Password);
                 if (createdUser.Succeeded)
                 {
                     var roleResult = await _userManager.AddToRoleAsync(appUser, "User");
