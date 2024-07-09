@@ -3,6 +3,7 @@ using Finshark.Data;
 using Finshark.Interfaces;
 using Finshark.Models;
 using Finshark.Repository;
+using Finshark.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -62,6 +63,7 @@ namespace Finshark
 
             builder.Services.AddScoped<IStockRepository, StockRepository>();
             builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+            builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddControllers().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
