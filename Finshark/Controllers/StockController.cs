@@ -3,6 +3,7 @@ using Finshark.Dtos.stock;
 using Finshark.Helpers;
 using Finshark.Interfaces;
 using Finshark.Mappers.stock;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +23,7 @@ namespace Finshark.Controllers
                
         }
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
         {
             if (!ModelState.IsValid)
