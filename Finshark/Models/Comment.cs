@@ -1,5 +1,8 @@
-﻿namespace Finshark.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Finshark.Models
 {
+    [Table("Comments")]
     public class Comment
     { 
         public int Id { get; set; }
