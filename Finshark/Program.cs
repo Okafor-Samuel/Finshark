@@ -118,9 +118,10 @@ namespace Finshark
 
             app.MapControllers();
 
-            app.UseAuthorization();
+           // app.UseAuthorization();
 
             app.Run();
+  
         }
     }
 }
